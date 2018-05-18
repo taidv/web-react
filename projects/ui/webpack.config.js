@@ -55,14 +55,14 @@ module.exports = {
 		"react-redux": "ReactRedux"
 	},
 	// Adapt the settings to your project
-	/*
+	
     devServer: {
         port: 3001,
-        publicPath: "/web-react/",
+        publicPath: "/",
         proxy: {
-            "/web-react/api": "http://localhost:3002"
+            "/api": "http://localhost:3000"
         },
         historyApiFallback: true
 	}
-	*/
+	
 };

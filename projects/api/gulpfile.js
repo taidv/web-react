@@ -111,4 +111,8 @@ gulp.task('watch', ['build:build', 'build:copy-static'], () => {
     gulp.watch('./src/*', ['build:build', 'build:copy-static'])
 });
 
-gulp.task('default', ['build']);
+gulp.task('watch-all', () => {
+    gulp.watch('./src/**/*.*', ['build:build', 'build:copy-static'])
+});
+
+gulp.task('default', ['build', 'watch-all']);

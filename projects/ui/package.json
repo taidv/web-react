@@ -4,7 +4,7 @@
     "description": "",
     "main": "dist",
     "scripts": {
-        "start": "webpack-dev-server --public hrbc1-web.localvm:80 --host $DEV_IP",
+        "start": "webpack-dev-server",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "private": true,
@@ -13,7 +13,8 @@
         "react-dom": "^16.2.0",
         "react-redux": "^5.0.7",
         "react-router-dom": "^4.2.2",
-        "redux": "^3.7.2"
+        "redux": "^3.7.2",
+        "redux-thunk": "^2.2.0"
     },
     "devDependencies": {
         "@types/react": "^16.0.40",
