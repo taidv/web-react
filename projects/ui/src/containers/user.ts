@@ -17,8 +17,8 @@ const mapStateToProps = (state: State) => {
 const mapDispatchToProps = (dispatch: Dispatch<{}>) => {
     return {
         refresh: () => {
-            console.log("Refresh");
-            dispatch(UserActions.fetchUser());
+            console.log("Refresh2");
+            dispatch(UserActions.fetchUser2());
         }
     }
 };

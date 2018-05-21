@@ -1,5 +1,6 @@
 import { Action } from './baseAction';
 import { Dispatch } from 'react-redux';
+import { UserServices } from '../services/users';
 
 export const ActionTypes = {
     FETCH_BEGIN: '@@HRBC/USER__FETCH_BEGIN',
@@ -28,25 +29,18 @@ export const UserActions = {
         }
     }),
 
-    fetchUser: () => {
+    fetchUser2: () => {
+
         return (dispatch: Dispatch<{}>) => {
+
             dispatch(UserActions.fetchBegin());
-            return fetch('/api/users')
+
+            return UserServices.getUser()
                 .then(
-                    response => {
-                        if (response.status == 200) {
-                            return response.json()
-                        } else {
-                            dispatch(UserActions.fetchFailure('Not found!'))
-                        }
-                    }, 
+                    user => dispatch(UserActions.fetchSuccess(user)), 
                     error => {
-                        console.log('An error occurred', error)
                         dispatch(UserActions.fetchFailure(error))
                     }
-                )
-                .then(user =>
-                    dispatch(UserActions.fetchSuccess(user))
                 )
         }
     }
