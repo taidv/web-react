@@ -5,14 +5,13 @@ export type UserState = {
     id: number,
     name: string,
     isLoading: boolean,
-    hasError: boolean
+    error?: string
 };
 
 const initState = {
     id: 0,
     name: "",
-    isLoading: false,
-    hasError: false
+    isLoading: false
 }
 
 const fetchBegin = (state: UserState): UserState => {
@@ -27,8 +26,8 @@ const fetchSucess = (state: UserState, user: any): UserState => {
     });
 }
 
-const fetchFailure = (state: UserState): UserState => {
-    return Object.assign({}, state, { isLoading: false, hasError: true });
+const fetchFailure = (state: UserState, error: string): UserState => {
+    return Object.assign({}, state, { isLoading: false, error: error });
 }
 
 const user = (state: UserState = initState, action: Action): UserState => {
@@ -43,7 +42,7 @@ const user = (state: UserState = initState, action: Action): UserState => {
         case Types.FETCH_BEGIN:
             return fetchBegin(state);
         case Types.FETCH_FAILURE:
-            return fetchFailure(state);
+            return fetchFailure(state, payload.error);
         default:
             return state;
     }

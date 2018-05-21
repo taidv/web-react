@@ -10,7 +10,7 @@ const mapStateToProps = (state: State) => {
         id: user.id,
         name: user.name,
         isLoading: user.isLoading,
-        hasError: user.hasError
+        error: user.error
     };
 };
 
@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch: Dispatch<{}>) => {
     return {
         refresh: () => {
             console.log("Refresh");
-            dispatch(UserActions.fetchBegin());
+            dispatch(UserActions.fetchUser());
         }
     }
 };
