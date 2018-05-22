@@ -14,13 +14,17 @@ const mapStateToProps = (state: State) => {
     };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<{}>) => {
-    return {
-        refresh: () => {
-            console.log("Refresh2");
-            dispatch(UserActions.fetchUser2());
-        }
-    }
+// const mapDispatchToProps = (dispatch: Dispatch<{}>) => {
+//     return {
+//         refresh: () => {
+//             dispatch(UserActions.fetchUserComplex());
+//         }
+//     }
+// };
+
+const refresh = UserActions.fetchBegin;
+const mapDispatchToProps = {
+    refresh
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(User);

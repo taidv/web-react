@@ -1,11 +1,13 @@
 import * as React from "react";
+import {Action} from '../actions'
 
 export interface UserProps {
     id: number;
     name: string;
     isLoading: boolean;
     error?: string;
-    refresh: () => void; 
+    // refresh: () => void; 
+    refresh: () => Action;
 }
 
 
@@ -26,7 +28,7 @@ export const User: React.StatelessComponent<UserProps> = (props) => {
                 !error &&
                     <h1>Hello {name || 'world'}! <input type="hidden" name="user" value={id} /> </h1>
             }
-            <button onClick={props.refresh}>Refresh</button>
+            <button onClick={refresh}>Refresh</button>
         </div>
     );
 };

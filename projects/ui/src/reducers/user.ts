@@ -42,7 +42,8 @@ const user = (state: UserState = initState, action: Action): UserState => {
         case Types.FETCH_BEGIN:
             return fetchBegin(state);
         case Types.FETCH_FAILURE:
-            return fetchFailure(state, payload.error);
+            let message = typeof payload.error === 'string' ? payload.error : payload.error.toString();
+            return fetchFailure(state, message);
         default:
             return state;
     }
