@@ -1,12 +1,13 @@
 
 const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
+const ts = require('gulp-typescript');
+const packageJson = require('./package.json');
 const webpack = require('webpack');
 const webpackstream = require('webpack-stream');
-const changed = require('gulp-changed');
-const ts = require('gulp-typescript');
-var tsProject = ts.createProject("tsconfig.json");
-var paths = {
+
+const tsProject = ts.createProject("tsconfig.json");
+const paths = {
 
 }
 
