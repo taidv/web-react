@@ -1,9 +1,7 @@
-
-const path = "/api/users/";
-const companyPath = "/api/company/";
+const path = '/api/users/';
+const companyPath = '/api/company/';
 
 class UserServices {
-
     // static getUser = async () => {
     //     try {
     //         const response: Response = await fetch(path, {
@@ -34,48 +32,45 @@ class UserServices {
     //     }
     // };
 
-
-    static getUser = () => {
+    public static getUser = () => {
         return fetch(path, {
-                method: 'GET',
-                credentials: 'include'
-            })
+            method: 'GET',
+            credentials: 'include',
+        })
             .then(res => res.json())
             .then(user => {
                 return {
                     user: user,
-                    error: null
-                }
+                    error: null,
+                };
             })
-            .catch(error => { 
-                return { 
+            .catch(error => {
+                return {
                     user: null,
-                    error: error 
-                }
+                    error: error,
+                };
             });
     };
 
-    static getCompany = (companyId: string) => {
+    public static getCompany = (companyId: string) => {
         return fetch(companyPath + companyId, {
             method: 'GET',
-            credentials: 'include'
+            credentials: 'include',
         })
-        .then(res => res.json())
-        .then(company => {
-            return {
-                company: company,
-                error: null
-            }
-        })
-        .catch(error => { 
-            return { 
-                company: null,
-                error: error 
-            }
-        });
+            .then(res => res.json())
+            .then(company => {
+                return {
+                    company: company,
+                    error: null,
+                };
+            })
+            .catch(error => {
+                return {
+                    company: null,
+                    error: error,
+                };
+            });
     };
 }
 
-export {
-    UserServices
-}
+export { UserServices };

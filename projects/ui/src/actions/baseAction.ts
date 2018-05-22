@@ -5,6 +5,4 @@ type Action = {
     error?: boolean;
 };
 
-export {
-    Action
-}
+export { Action };

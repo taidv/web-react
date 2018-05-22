@@ -1,25 +1,20 @@
 import { call, put, take } from 'redux-saga/effects';
 import { UserActions, UserActionTypes } from '../actions';
-import { UserServices, } from '../services/users';
-
+import { UserServices } from '../services/users';
 
 function* loadUser() {
-    
-    const { user, error} = yield call(UserServices.getUser);
+    const { user, error } = yield call(UserServices.getUser);
 
-    !!user && !error
-    ? yield put(UserActions.fetchSuccess(user))
-    : yield put(UserActions.fetchFailure(error));
+    !!user && !error ? yield put(UserActions.fetchSuccess(user)) : yield put(UserActions.fetchFailure(error));
 }
 
 function* loadSearches() {
-    
-    while(true) {
+    while (true) {
         const { payload } = yield take(UserActionTypes.FETCH_SUCCESS);
-        const { company, error} = yield call(UserServices.getCompany, payload.user.id);
+        const { company, error } = yield call(UserServices.getCompany, payload.user.id);
 
-        !!company && !error
-        ? yield put(UserActions.fetchSuccess(company))
-        : yield put(UserActions.fetchFailure(error));
+        !!company && !error ? yield put(UserActions.fetchSuccess(company)) : yield put(UserActions.fetchFailure(error));
     }
 }
+
+export { loadUser, loadSearches };

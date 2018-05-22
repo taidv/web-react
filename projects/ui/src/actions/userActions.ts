@@ -1,46 +1,45 @@
-import { Action } from './baseAction';
 import { Dispatch } from 'react-redux';
 import { UserServices } from '../services/users';
+import { Action } from './baseAction';
 
 export const ActionTypes = {
     FETCH_BEGIN: '@@HRBC/USER__FETCH_BEGIN',
     FETCH_SUCCESS: '@@HRBC/USER__FETCH_SUCCESS',
-    FETCH_FAILURE: '@@HRBC/USER__FETCH_FAILURE'
-}
+    FETCH_FAILURE: '@@HRBC/USER__FETCH_FAILURE',
+};
 
 export const UserActions = {
-
     fetchBegin: (): Action => ({
         type: ActionTypes.FETCH_BEGIN,
-        payload: {}
+        payload: {},
     }),
 
     fetchSuccess: (user: any): Action => ({
         type: ActionTypes.FETCH_SUCCESS,
         payload: {
-            user: user
-        }
+            user: user,
+        },
     }),
 
     fetchFailure: (error: any): Action => ({
         type: ActionTypes.FETCH_FAILURE,
         payload: {
-            error: error
-        }
+            error: error,
+        },
     }),
 
     fetchCompanySuccess: (user: any): Action => ({
-        type: "COMPANY SUCCESS",
+        type: 'COMPANY SUCCESS',
         payload: {
-            user: user
-        }
+            user: user,
+        },
     }),
 
     fetchCompanyFailure: (error: any): Action => ({
         type: ActionTypes.FETCH_FAILURE,
         payload: {
-            error: error
-        }
+            error: error,
+        },
     }),
 
     // fetchUser: () => {
@@ -51,7 +50,7 @@ export const UserActions = {
 
     //         return UserServices.getUser()
     //             .then(
-    //                 user => dispatch(UserActions.fetchSuccess(user)), 
+    //                 user => dispatch(UserActions.fetchSuccess(user)),
     //                 error => {
     //                     dispatch(UserActions.fetchFailure(error))
     //                 }
@@ -59,56 +58,41 @@ export const UserActions = {
     //     }
     // },
 
-
-
     fetchUser: () => {
-
         return (dispatch: Dispatch<{}>) => {
-
             dispatch(UserActions.fetchBegin());
 
-            return UserServices.getUser()
-                .then( res => {
+            return UserServices.getUser().then(response => {
+                const { user, error } = response;
 
-                    const {user, error} = res;
-
-                    if (!error && !!user) {
-                        dispatch(UserActions.fetchSuccess(user))
-                    } else {
-                        dispatch(UserActions.fetchFailure(error))
-                    }
-                });
-        }
+                if (!error && !!user) {
+                    dispatch(UserActions.fetchSuccess(user));
+                } else {
+                    dispatch(UserActions.fetchFailure(error));
+                }
+            });
+        };
     },
 
     fetchUserComplex: () => {
-
         return (dispatch: Dispatch<{}>) => {
-
             dispatch(UserActions.fetchBegin());
 
-            return UserServices.getUser()
-                .then( res => {
+            return UserServices.getUser().then(response => {
+                const { user, error } = response;
 
-                    const {user, error} = res;
+                if (!error && !!user) {
+                    dispatch(UserActions.fetchSuccess(user));
 
-                    if (!error && !!user) {
-                        dispatch(UserActions.fetchSuccess(user))
-                        
-                        UserServices.getCompany(user.companyId)
-                            .then(res => {
-
-                                const {company, error} = res;
-
-                                !error && !!company
-                                ? dispatch(UserActions.fetchCompanySuccess(company))
-                                : dispatch(UserActions.fetchCompanyFailure(error))
-                            })
-
-                    } else {
-                        dispatch(UserActions.fetchFailure(error))
-                    }
-                });
-        }
-    }
-}
+                    UserServices.getCompany(user.companyId).then(res => {
+                        !res.error && !!res.company
+                            ? dispatch(UserActions.fetchCompanySuccess(res.company))
+                            : dispatch(UserActions.fetchCompanyFailure(res.error));
+                    });
+                } else {
+                    dispatch(UserActions.fetchFailure(error));
+                }
+            });
+        };
+    },
+};

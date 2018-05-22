@@ -1,8 +1,7 @@
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
+import { UserActions } from '../actions';
 import { User } from '../components/user';
 import { State } from '../reducers';
-import { UserActions } from '../actions'
-
 
 const mapStateToProps = (state: State) => {
     const user = state.user;
@@ -10,7 +9,7 @@ const mapStateToProps = (state: State) => {
         id: user.id,
         name: user.name,
         isLoading: user.isLoading,
-        error: user.error
+        error: user.error,
     };
 };
 
@@ -24,7 +23,7 @@ const mapStateToProps = (state: State) => {
 
 const refresh = UserActions.fetchBegin;
 const mapDispatchToProps = {
-    refresh
+    refresh,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(User);
