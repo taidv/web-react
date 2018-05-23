@@ -13,14 +13,17 @@ function* loadUser() {
 }
 
 function* loadSearches() {
-    const { payload } = yield take(UserActionTypes.FETCH_SUCCESS);
-    const { company, error } = yield call(UserServices.getCompany, payload.user.id);
+    while (true) {
+        const { payload } = yield take(UserActionTypes.FETCH_SUCCESS);
+        const { company, error } = yield call(UserServices.getCompany, payload.user.name);
 
-    !!company && !error ? yield put(UserActions.fetchSuccess(company)) : yield put(UserActions.fetchFailure(error));
+        !!company && !error ? yield put(UserActions.fetchSuccess(company)) : yield put(UserActions.fetchFailure(error));
+    }
 }
 
 function* rootSaga() {
     yield fork(loadUser);
+    yield fork(loadSearches);
     //  [
 
     //     // watchers

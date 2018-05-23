@@ -84,7 +84,7 @@ export const UserActions = {
                 if (!error && !!user) {
                     dispatch(UserActions.fetchSuccess(user));
 
-                    UserServices.getCompany(user.companyId).then(res => {
+                    UserServices.getCompany(user.name).then(res => {
                         !res.error && !!res.company
                             ? dispatch(UserActions.fetchCompanySuccess(res.company))
                             : dispatch(UserActions.fetchCompanyFailure(res.error));
