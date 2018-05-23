@@ -18,7 +18,7 @@ addLocaleData([...enLocaleData, ...jaLocaleData, ...zhLocaleData]);
 
 export const appLocales = ['en', 'ja', 'zh'];
 
-export const DEFAULT_LOCALE = 'ja';
+export const DEFAULT_LOCALE = 'en';
 
 type LanguageTranslation = {
     [key: string]: object | string;
