@@ -5,12 +5,13 @@ const gulp = require('gulp');
 const mocha = require('gulp-mocha');
 const runSequence = require('run-sequence');
 const sourcemaps = require('gulp-sourcemaps');
-const webpack = require('webpack');
-const webpackstream = require('webpack-stream');
 const ts = require('gulp-typescript');
 const packageJson = require('./package.json');
-var tsProject = ts.createProject("tsconfig.json");
-var paths = {
+const webpack = require('webpack');
+const webpackstream = require('webpack-stream');
+
+const tsProject = ts.createProject("tsconfig.json");
+const paths = {
 
 }
 const distTest = packageJson.test;
