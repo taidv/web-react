@@ -1,13 +1,11 @@
-
-const path = "/api/users";
+const path = '/api/users';
 
 class UserServices {
-
-    static getUser = async () => {
+    public static getUser = async () => {
         try {
             const response: Response = await fetch(path, {
                 method: 'GET',
-                credentials: 'include'
+                credentials: 'include',
             });
             if (!response.ok) {
                 throw { statusCode: response.status, message: response.statusText };
@@ -19,6 +17,4 @@ class UserServices {
     };
 }
 
-export {
-    UserServices
-}
+export { UserServices };

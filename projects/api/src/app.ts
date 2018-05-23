@@ -1,13 +1,13 @@
 import * as express from 'express';
 import * as path from 'path';
 
-import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
+import * as cookieParser from 'cookie-parser';
 
 import { router as index } from './routes/index.router';
 import { router as users } from './routes/users.router';
 
-let app: express.Express = express();
+const app: express.Express = express();
 
 class HttpError extends Error {
     public status: number;
@@ -28,7 +28,7 @@ app.use('/api/users', users);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-    var err = new HttpError(404, 'Not Found');
+    const err = new HttpError(404, 'Not Found');
     next(err);
 });
 

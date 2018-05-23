@@ -6,7 +6,7 @@ export interface State {
 }
 
 const rootReducer = combineReducers<State>({
-    user
+    user,
 });
 
 export default rootReducer;

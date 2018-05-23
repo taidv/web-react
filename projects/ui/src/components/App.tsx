@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Hello } from './hello';
 import { default as User } from '../containers/user';
+import { Hello } from './hello';
 
 export const App: React.StatelessComponent<{}> = () => {
     return (

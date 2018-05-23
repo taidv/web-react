@@ -1,15 +1,14 @@
-import * as React from "react";
+import * as React from 'react';
 
 export interface UserProps {
     id: number;
     name: string;
     isLoading: boolean;
     hasError: boolean;
-    refresh: () => void; 
+    refresh: () => void;
 }
 
-export const User: React.StatelessComponent<UserProps> = (props) => {
-    
+export const User: React.StatelessComponent<UserProps> = props => {
     return (
         <div>
             <h1>Hello {props.name}!</h1>
